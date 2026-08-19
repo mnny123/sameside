@@ -631,7 +631,10 @@
   function render() {
     var path = currentPath();
     var route = routes[path] || routes['/404'];
+    appEl.classList.remove('page-enter');
+    void appEl.offsetWidth; /* restart the animation on every navigation */
     appEl.innerHTML = route.render();
+    appEl.classList.add('page-enter');
     applyOverrides(appEl);
     setMeta(route, routes[path] ? path : '/404');
     renderCrumbs(route);
