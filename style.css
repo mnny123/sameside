@@ -330,9 +330,19 @@ details.faq-item summary::after {
   top: 12px;
   font-size: 1.4rem;
   color: var(--teal);
+  transition: transform 0.25s ease;
 }
-details.faq-item[open] summary::after { content: "–"; }
-details.faq-item .faq-body { padding-bottom: 16px; }
+details.faq-item[open] summary::after { transform: rotate(45deg); }
+details.faq-item .faq-body {
+  padding-bottom: 16px;
+  overflow: hidden;
+  transition: height 0.3s ease, opacity 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  details.faq-item summary::after,
+  details.faq-item .faq-body { transition: none; }
+}
 
 /* Forms */
 

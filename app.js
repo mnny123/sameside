@@ -664,6 +664,46 @@
 
   window.addEventListener('popstate', render);
 
+  /* FAQ accordion: expand and collapse the answers with a height transition. */
+  document.addEventListener('click', function (e) {
+    var summary = e.target.closest ? e.target.closest('details.faq-item summary') : null;
+    if (!summary) return;
+    e.preventDefault();
+    var details = summary.parentElement;
+    var body = details.querySelector('.faq-body');
+    if (!body || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      details.open = !details.open;
+      return;
+    }
+    if (details.dataset.animating) return;
+    details.dataset.animating = 'yes';
+    if (!details.open) {
+      details.open = true;
+      var target = body.scrollHeight;
+      body.style.height = '0px';
+      body.style.opacity = '0';
+      void body.offsetHeight;
+      body.style.height = target + 'px';
+      body.style.opacity = '1';
+      setTimeout(function () {
+        body.style.height = '';
+        body.style.opacity = '';
+        delete details.dataset.animating;
+      }, 320);
+    } else {
+      body.style.height = body.scrollHeight + 'px';
+      void body.offsetHeight;
+      body.style.height = '0px';
+      body.style.opacity = '0';
+      setTimeout(function () {
+        details.open = false;
+        body.style.height = '';
+        body.style.opacity = '';
+        delete details.dataset.animating;
+      }, 300);
+    }
+  });
+
   document.getElementById('navToggle').addEventListener('click', function () {
     var nav = document.getElementById('siteNav');
     var open = nav.classList.toggle('open');
