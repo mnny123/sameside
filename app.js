@@ -675,32 +675,29 @@
       details.open = !details.open;
       return;
     }
-    if (details.dataset.animating) return;
+    if (details.dataset.animating || typeof body.animate !== 'function') {
+      if (!details.dataset.animating) details.open = !details.open;
+      return;
+    }
     details.dataset.animating = 'yes';
+    var done = function () { delete details.dataset.animating; };
     if (!details.open) {
       details.open = true;
       var target = body.scrollHeight;
-      body.style.height = '0px';
-      body.style.opacity = '0';
-      void body.offsetHeight;
-      body.style.height = target + 'px';
-      body.style.opacity = '1';
-      setTimeout(function () {
-        body.style.height = '';
-        body.style.opacity = '';
-        delete details.dataset.animating;
-      }, 320);
+      var opening = body.animate([
+        { height: '0px', paddingBottom: '0px', opacity: 0 },
+        { height: target + 'px', paddingBottom: '16px', opacity: 1 }
+      ], { duration: 280, easing: 'cubic-bezier(0.33, 1, 0.68, 1)' });
+      opening.onfinish = done;
+      opening.oncancel = done;
     } else {
-      body.style.height = body.scrollHeight + 'px';
-      void body.offsetHeight;
-      body.style.height = '0px';
-      body.style.opacity = '0';
-      setTimeout(function () {
-        details.open = false;
-        body.style.height = '';
-        body.style.opacity = '';
-        delete details.dataset.animating;
-      }, 300);
+      var start = body.scrollHeight;
+      var closing = body.animate([
+        { height: start + 'px', paddingBottom: '16px', opacity: 1 },
+        { height: '0px', paddingBottom: '0px', opacity: 0 }
+      ], { duration: 240, easing: 'cubic-bezier(0.65, 0, 0.35, 1)' });
+      closing.onfinish = function () { details.open = false; done(); };
+      closing.oncancel = done;
     }
   });
 
