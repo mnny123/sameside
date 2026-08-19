@@ -1,0 +1,28 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Site content edited through the dev mode.
+    // Anyone can read it because the site displays it to all visitors.
+    // Only a signed in admin can write it.
+    match /content/{docId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // Enquiries from the contact form.
+    // Anyone can create one, but only a signed in admin can read them.
+    // Nobody can update or delete an enquiry from the client.
+    match /enquiries/{docId} {
+      allow create: if true;
+      allow read: if request.auth != null;
+      allow update, delete: if false;
+    }
+
+    // Everything else is locked.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
