@@ -9,17 +9,15 @@
 
   /* ------------------------------------------------------------------ */
   /* Firebase configuration                                              */
-  /* [Placeholder: paste your real Firebase config here. See SETUP.md.  */
-  /* The site works fully as a static site while these say PASTE_...]   */
   /* ------------------------------------------------------------------ */
 
   var firebaseConfig = {
-    apiKey: 'PASTE_FIREBASE_API_KEY',
-    authDomain: 'PASTE_FIREBASE_AUTH_DOMAIN',
-    projectId: 'PASTE_FIREBASE_PROJECT_ID',
-    storageBucket: 'PASTE_FIREBASE_STORAGE_BUCKET',
-    messagingSenderId: 'PASTE_FIREBASE_MESSAGING_SENDER_ID',
-    appId: 'PASTE_FIREBASE_APP_ID'
+    apiKey: 'AIzaSyB9MxR3lqZd2GPOQtPe1KqcXdbNC9jJdSs',
+    authDomain: 'same-side.firebaseapp.com',
+    projectId: 'same-side',
+    storageBucket: 'same-side.firebasestorage.app',
+    messagingSenderId: '901677411449',
+    appId: '1:901677411449:web:4987e1680dab036e40b8a8'
   };
 
   var firebaseReady = false;
