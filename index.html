@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Same Side | Health, not shame</title>
-  <meta name="description" content="Same Side is a free youth led program that helps Queensland secondary schools reduce stigma about drug use among teenagers.">
+  <meta name="description" content="Same Side is a youth led social enterprise from the Redlands, Queensland. Our school visit helps students back a struggling friend instead of shaming them.">
 
   <!-- Single page app redirect handler for GitHub Pages.
        Restores the real path from the query string that 404.html creates.
@@ -27,12 +27,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Same Side">
   <meta property="og:title" content="Same Side | Health, not shame">
-  <meta property="og:description" content="A free youth led program that helps secondary schools reduce stigma about drug use among teenagers.">
+  <meta property="og:description" content="A youth led school visit that helps students back a struggling friend instead of shaming them.">
   <meta property="og:url" content="https://mnny123.github.io/sameside/">
   <meta property="og:image" content="https://mnny123.github.io/sameside/share-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Same Side | Health, not shame">
-  <meta name="twitter:description" content="A free youth led program that helps secondary schools reduce stigma about drug use among teenagers.">
+  <meta name="twitter:description" content="A youth led school visit that helps students back a struggling friend instead of shaming them.">
   <meta name="twitter:image" content="https://mnny123.github.io/sameside/share-image.png">
   <!-- [Placeholder: upload share-image.png (1200 x 630) to the repo root for social shares] -->
 
@@ -83,7 +83,15 @@
           <li><a href="/sameside/" data-link>Home</a></li>
           <li><a href="/sameside/how-it-works" data-link>How it works</a></li>
           <li><a href="/sameside/for-schools" data-link>For schools</a></li>
-          <li><a href="/sameside/case-studies" data-link>Case studies</a></li>
+          <li class="nav-group">
+            <button class="nav-group-btn" id="pitchBtn" type="button" aria-expanded="false" aria-controls="pitchMenu">Our pitch</button>
+            <ul class="nav-sub" id="pitchMenu">
+              <li><a href="/sameside/research" data-link>Problem and research</a></li>
+              <li><a href="/sameside/journey" data-link>Our journey</a></li>
+              <li><a href="/sameside/impact" data-link>Prototype, impact and future</a></li>
+              <li><a href="/sameside/testing" data-link>Testing and feedback</a></li>
+            </ul>
+          </li>
           <li><a href="/sameside/faq" data-link>FAQ</a></li>
           <li><a href="/sameside/about" data-link>About</a></li>
           <li><a class="nav-cta" href="/sameside/contact" data-link>Contact</a></li>
@@ -110,28 +118,41 @@
           <li><a href="/sameside/for-schools" data-link>For schools</a></li>
           <li><a href="/sameside/case-studies" data-link>Case studies</a></li>
           <li><a href="/sameside/faq" data-link>FAQ</a></li>
+          <li><a href="/sameside/about" data-link>About us</a></li>
+          <li><a href="/sameside/contact" data-link>Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Our pitch</h3>
+        <ul>
+          <li><a href="/sameside/research" data-link>Problem and research</a></li>
+          <li><a href="/sameside/journey" data-link>Our journey</a></li>
+          <li><a href="/sameside/impact" data-link>Prototype, impact and future</a></li>
+          <li><a href="/sameside/testing" data-link>Testing and feedback</a></li>
+          <li><a href="/sameside/testing-kit" data-link>Testing kit</a></li>
+          <li><a href="/sameside/campaign" data-link>Campaign</a></li>
         </ul>
       </div>
       <div>
         <h3>More</h3>
         <ul>
-          <li><a href="/sameside/about" data-link>About us</a></li>
-          <li><a href="/sameside/contact" data-link>Contact</a></li>
+          <li><a href="/sameside/references" data-link>References</a></li>
+          <li><a href="/sameside/journal" data-link>Team journal</a></li>
           <li><a href="/sameside/privacy" data-link>Privacy policy</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Same Side. Free for all Australian schools.</span>
-      <button class="dev-btn" id="devBtn" type="button">dev</button>
+      <span>© 2026 Same Side. Health, not shame.</span>
+      <button class="dev-btn" id="devBtn" type="button">Editor login</button>
     </div>
   </footer>
 
   <div class="mobile-cta" id="mobileCta">
-    <a class="btn btn-primary" href="/sameside/contact" data-link>Get the free lesson kit</a>
+    <a class="btn btn-primary" href="/sameside/contact" data-link>Bring Same Side to your school</a>
   </div>
 
-  <!-- Dev login modal -->
+  <!-- Editor login modal -->
   <div class="modal-backdrop" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
     <div class="modal">
       <h3 id="loginTitle">Editor login</h3>

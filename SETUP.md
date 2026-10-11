@@ -1,6 +1,6 @@
 # Same Side setup guide
 
-The site already works as a plain static site. Follow these steps when you are ready to connect Firebase so the contact form saves enquiries and the dev editing mode works. Everything here happens in the Firebase console at https://console.firebase.google.com and in one file in this repo.
+The site already works as a plain static site. Follow these steps when you are ready to connect Firebase so the contact form saves enquiries and the editing mode works. Everything here happens in the Firebase console at https://console.firebase.google.com and in one file in this repo.
 
 ## 1. Create the Firebase project
 
@@ -29,7 +29,7 @@ There is no public sign up on the site on purpose, so the account is made here.
 1. Still in Authentication, open the Users tab.
 2. Click Add user.
 3. Enter the email and a strong password you want to use as the site editor login.
-4. Click Add user. This is the login the dev button will accept.
+4. Click Add user. This is the login the Editor login button will accept.
 
 ## 5. Create the Firestore database and paste in the rules
 
@@ -56,10 +56,10 @@ Firebase Auth only accepts logins from domains it trusts.
 2. Click Add domain and enter mnny123.github.io
 3. Save. localhost is already on the list, which is handy for local testing.
 
-## 8. Test the dev button
+## 8. Test the Editor login button
 
 1. Open https://mnny123.github.io/sameside/ in a normal browser window.
-2. Scroll to the footer and click the small low contrast word dev on the right.
+2. Scroll to the footer and click the small Editor login button on the right.
 3. Log in with the email and password from step 4.
 4. Every body text block gets a dashed outline and becomes editable in place. An Editing mode bar appears in the corner.
 5. Change some text, click Save changes and wait for the Saved confirmation.
@@ -78,4 +78,18 @@ If an edit ever goes wrong, delete the matching document from the `content` coll
 
 - The GA4 snippet in `index.html` uses G-XXXXXXXXXX twice, marked [Placeholder: add GA4 ID]. Replace both with your real measurement ID from Google Analytics.
 - Social share images point to `share-image.png` at the repo root. Upload a 1200 x 630 image with that name when you have one.
-- The case studies and reviews are marked as placeholders on the site. Replace them with real pilot results through the dev editing mode once you have them.
+- The case studies page is an empty template. Fill it in through editing mode once you have run a real school visit.
+- Anything in [SQUARE BRACKETS] on the site is a placeholder. Log in, click into it, type over it and click Save changes.
+
+## Filling in the testing results
+
+On the Testing and feedback page, each box in the results table is one tester's rating. In editing mode type a number from 1 to 5 (4.5 or 4/5 also work) and the averages, the chart and the summary on the home page update by themselves. Leave a box as [RATING /5] if that tester did not answer. Click Save changes when you are done.
+
+## Adding photos and screenshots
+
+1. On GitHub, open the `images` folder in this repo and upload your photo (Add file, then Upload files). Keep file names short with no spaces, for example `workshop-1.jpg`.
+2. On the site, log in and find the photo slot. Click the line that starts with [PHOTO: and replace it with the file path, for example `images/workshop-1.jpg`.
+3. Replace the [CAPTION] line with a short description of the photo. This is also the alt text for screen readers.
+4. Click Save changes. The photo appears once GitHub Pages has published the upload, which can take a minute or two.
+
+Only use photos of people who have said yes, and check with your teacher before posting photos of other students.
