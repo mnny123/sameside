@@ -382,11 +382,12 @@
 
         '<section class="section summary-box">' +
           ed('home.summary-h', 'h2', 'Same Side in 30 seconds') +
+          ed('home.summary-intro', 'p', 'Same Side is working to reduce the stigma around teenage drug use. We do it by providing education to schools.', ' class="summary-intro"') +
           '<dl class="summary-list">' +
-            '<div><dt>What it is</dt>' + ed('home.summary-what', 'dd', 'A school visit: a short talk and hands-on activities, about 70 minutes long.') + '</div>' +
-            '<div><dt>Who it is for</dt>' + ed('home.summary-who', 'dd', 'Students in Years 9 to 12, starting with schools in the Redlands.') + '</div>' +
-            '<div><dt>Why</dt>' + ed('home.summary-why', 'dd', 'So a friend who is struggling with drugs gets support instead of jokes and gossip.') + '</div>' +
-            '<div><dt>Who runs it</dt>' + ed('home.summary-how', 'dd', 'Same Side presenters run everything. Teachers do not have to prepare a thing.') + '</div>' +
+            '<div><dt>Our aim</dt>' + ed('home.summary-aim', 'dd', 'Reduce the stigma around teenage drug use, so a teen who is struggling gets support instead of shame.') + '</div>' +
+            '<div><dt>How we do it</dt>' + ed('home.summary-edu', 'dd', 'Education in schools. Our presenters run a 70 minute visit with a short talk and hands-on activities about what stigma does and how to support a friend.') + '</div>' +
+            '<div><dt>Who it is for</dt>' + ed('home.summary-for', 'dd', 'Students in Years 9 to 12 and the schools that teach them, starting in the Redlands.') + '</div>' +
+            '<div><dt>Why it matters</dt>' + ed('home.summary-matters', 'dd', 'Stigma makes young people hide what they are going through and wait longer to get help.') + '</div>' +
           '</dl>' +
         '</section>' +
 
