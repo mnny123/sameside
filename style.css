@@ -620,7 +620,7 @@ textarea { min-height: 140px; resize: vertical; }
 .data-table thead th { background: var(--teal-tint); color: var(--teal-dark); font-size: 0.92rem; }
 .data-table tbody tr:last-child th, .data-table tbody tr:last-child td { border-bottom: none; }
 
-.ratings-table { min-width: 680px; }
+.ratings-table { min-width: 860px; }
 .ratings-table tbody th { font-weight: 600; min-width: 200px; }
 .ratings-table .rating-cell { text-align: center; color: var(--ink-soft); white-space: nowrap; }
 .ratings-table .avg-cell { text-align: center; font-weight: 700; color: var(--teal-dark); background: #f4f9f8; }
@@ -938,6 +938,28 @@ textarea { min-height: 140px; resize: vertical; }
   @page { size: A4; margin: 14mm; }
 }
 
+/* Same Side in 30 seconds */
+
+.summary-box {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--amber);
+  border-radius: var(--radius);
+  padding: 26px 28px;
+}
+.summary-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 0; }
+.summary-list dt { font-weight: 700; color: var(--teal-dark); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
+.summary-list dd { margin: 0; }
+
+/* Get help */
+
+.nav-help { color: var(--teal-dark) !important; font-weight: 600; }
+.help-urgent p { margin: 0; }
+.help-card .help-how { font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; }
+.help-card p:last-child { margin-bottom: 0; }
+
+.th-role { display: block; font-weight: 400; font-size: 0.8rem; color: var(--ink-soft); }
+
 /* Utility */
 
 .muted { color: var(--ink-soft); }
@@ -953,6 +975,7 @@ textarea { min-height: 140px; resize: vertical; }
 @media (max-width: 860px) {
   .hero { grid-template-columns: 1fr; gap: 24px; }
   .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .summary-list { grid-template-columns: 1fr 1fr; }
   .nav-toggle { display: block; }
   .site-nav { display: none; width: 100%; }
   .site-nav.open { display: block; }

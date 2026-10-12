@@ -69,7 +69,7 @@
   var HELP_NOTE =
     '<aside class="help-note" aria-label="Where to get help">' +
     ed('shared.help-note', 'p',
-      'If this topic brings anything up for you or a friend, you can talk to <a href="https://headspace.org.au/headspace-centres/capalaba/" rel="noopener" target="_blank">headspace Capalaba</a> or call Kids Helpline on 1800 55 1800, any time of day or night.') +
+      'If this topic brings anything up for you or a friend, you can talk to <a href="https://headspace.org.au/headspace-centres/capalaba/" rel="noopener" target="_blank">headspace Capalaba</a> or call Kids Helpline on 1800 55 1800, any time of day or night. Our ' + link('/get-help', 'Get help') + ' page has more options.') +
     '</aside>';
 
   var BRAND_MARK =
@@ -160,7 +160,17 @@
     'Confident to help a struggling friend',
     'Want Same Side at their school'
   ];
-  var TESTER_SLOTS = 5;
+  var TESTER_SLOTS = 8;
+  /* Real answers from our Google Form survey, 10 to 13 October 2026.
+     One row per question, one number per tester. */
+  var SURVEY_RATINGS = [
+    [1, 1, 5, 5, 5, 1, 1, 5],
+    [1, 1, 5, 5, 5, 1, 1, 5],
+    [1, 1, 5, 5, 5, 5, 4, 5],
+    [1, 1, 5, 5, 5, 1, 2, 5],
+    [1, 1, 5, 5, 5, 1, 2, 5]
+  ];
+  var TESTER_ROLES = ['Year 10', 'Year 10', 'Year 10', 'Year 10', 'Not given', 'Year 10', 'Staff', 'Year 10'];
 
   /* Reads the current text for an editable key: from the page if the
      element is showing, otherwise from saved content, otherwise null. */
@@ -172,6 +182,8 @@
       tmp.innerHTML = contentOverrides[key];
       return tmp.textContent;
     }
+    var m = /^testing\.rate-q(\d)-t(\d)$/.exec(key);
+    if (m && SURVEY_RATINGS[m[1] - 1]) return String(SURVEY_RATINGS[m[1] - 1][m[2] - 1]);
     return null;
   }
 
@@ -368,6 +380,16 @@
           ILLO_HERO +
         '</section>' +
 
+        '<section class="section summary-box">' +
+          ed('home.summary-h', 'h2', 'Same Side in 30 seconds') +
+          '<dl class="summary-list">' +
+            '<div><dt>What it is</dt>' + ed('home.summary-what', 'dd', 'A school visit: a short talk and hands-on activities, about 70 minutes long.') + '</div>' +
+            '<div><dt>Who it is for</dt>' + ed('home.summary-who', 'dd', 'Students in Years 9 to 12, starting with schools in the Redlands.') + '</div>' +
+            '<div><dt>Why</dt>' + ed('home.summary-why', 'dd', 'So a friend who is struggling with drugs gets support instead of jokes and gossip.') + '</div>' +
+            '<div><dt>Who runs it</dt>' + ed('home.summary-how', 'dd', 'Same Side presenters run everything. Teachers do not have to prepare a thing.') + '</div>' +
+          '</dl>' +
+        '</section>' +
+
         '<section class="section story">' +
           '<p class="eyebrow">1. The problem</p>' +
           ed('home.story-problem-h', 'h2', 'The problem is not only the drugs. It is the silence.') +
@@ -418,10 +440,10 @@
           ed('home.story-proof-h', 'h2', 'We tested it with our target audience') +
           '<div class="hero">' +
             '<div>' +
-              ed('home.story-proof', 'p',
-                'Real testers from our target audience explored this website, tried part of the workshop and told us what worked and what did not. [TESTING SUMMARY: one or two sentences about what testers said, for example what they liked most]') +
-              ed('home.story-proof-change', 'p',
-                'Because of their feedback we changed [WHAT YOU CHANGED]. See the full results, quotes and the before and after on our ' + link('/testing', 'testing and feedback') + ' page.') +
+              ed('home.story-proof-real', 'p',
+                'Eight people tested Same Side in October 2026, including six Year 10 students and a teacher. Six of the eight said the visit felt respectful, giving it 4 or 5 out of 5. But half of them found it hard to tell what Same Side does from the website, and that was honest feedback we needed.') +
+              ed('home.story-proof-change-real', 'p',
+                'Because of their feedback we added a ' + link('/get-help', 'Get help') + ' page with more ways to reach out, and the "Same Side in 30 seconds" box at the top of this page. See the full results, quotes and the before and after on our ' + link('/testing', 'testing and feedback') + ' page.') +
             '</div>' +
             '<div class="card stat-card proof-card" id="homeProof" aria-live="polite"></div>' +
           '</div>' +
@@ -580,11 +602,11 @@
               'Our problem statement: teens who are struggling with drugs often hide it, because the people around them respond with jokes, gossip or distance instead of support. Read more on our ' + link('/research', 'problem and research') + ' page.') +
             step(5, '[TERM 3, WEEK ?]', 'We built our first prototype',
               'Our first prototype had two parts: this website and a plan for a school visit with a short talk and activities. [WHAT YOUR FIRST VERSION LOOKED LIKE]') +
-            step(6, '[TERM 4, WEEK ?]', 'We tested it',
-              'Testers from our target audience looked at the website first, then tried part of the workshop and gave us feedback through a survey and short interviews. See our ' + link('/testing', 'testing and feedback') + ' page.') +
-            step(7, '[TERM 4, WEEK ?]', 'We improved it',
-              '[WHAT YOU CHANGED BECAUSE OF THE FEEDBACK]. The before and after is on our ' + link('/testing', 'testing') + ' page.') +
-            step(8, '[TERM 4, WEEK ?]', 'We launched our campaign',
+            step('6b', 'Term 4, October 2026', 'We tested it',
+              'Eight people, mostly Year 10 students plus a teacher, looked at the website and filled in our anonymous survey on Google Forms. See our ' + link('/testing', 'testing and feedback') + ' page.') +
+            step('7b', 'Term 4, October 2026', 'We improved it',
+              'Testers asked for more ways to reach out, and half of them found it hard to tell what Same Side does. So we added a ' + link('/get-help', 'Get help') + ' page and a 30 second summary on the home page. The before and after is on our ' + link('/testing', 'testing') + ' page.') +
+            step('8b', 'Term 4, October 2026', 'We launched our campaign',
               'We made a poster and social media posts that point schools and students to this website. See ' + link('/campaign', 'our campaign') + '.') +
           '</ol>' +
         '</section>' +
@@ -636,14 +658,15 @@
             '<caption class="sr-only">Run sheet for a Same Side school visit</caption>' +
             '<thead><tr><th scope="col">Part</th><th scope="col">What happens</th><th scope="col">Time</th></tr></thead>' +
             '<tbody>' +
-              '<tr>' + ed('impact.run-1a', 'td', 'Start check') + ed('impact.run-1b', 'td', 'A few anonymous questions about attitudes. No names.') + ed('impact.run-1c', 'td', '[MINUTES]') + '</tr>' +
-              '<tr>' + ed('impact.run-2a', 'td', 'The talk') + ed('impact.run-2b', 'td', 'What dependence is, what stigma does and why it matters who is in your corner.') + ed('impact.run-2c', 'td', '[MINUTES]') + '</tr>' +
-              '<tr>' + ed('impact.run-3a', 'td', 'Myth or fact') + ed('impact.run-3b', 'td', 'Small groups sort common beliefs about drug use and talk about where they come from.') + ed('impact.run-3c', 'td', '[MINUTES]') + '</tr>' +
-              '<tr>' + ed('impact.run-4a', 'td', 'Swap the word') + ed('impact.run-4b', 'td', 'Students turn harsh labels into words that describe a person, not a problem.') + ed('impact.run-4c', 'td', '[MINUTES]') + '</tr>' +
-              '<tr>' + ed('impact.run-5a', 'td', 'What would you say?') + ed('impact.run-5b', 'td', 'Groups work through made-up scenarios about a worried friend and practise what to say and do.') + ed('impact.run-5c', 'td', '[MINUTES]') + '</tr>' +
-              '<tr>' + ed('impact.run-6a', 'td', 'Wrap up and end check') + ed('impact.run-6b', 'td', 'Where to get help, then the same anonymous questions again.') + ed('impact.run-6c', 'td', '[MINUTES]') + '</tr>' +
+              '<tr>' + ed('impact.run-1a', 'td', 'Start check') + ed('impact.run-1b', 'td', 'A few anonymous questions about attitudes. No names.') + ed('impact.run-1min', 'td', '5 minutes') + '</tr>' +
+              '<tr>' + ed('impact.run-2a', 'td', 'The talk') + ed('impact.run-2b', 'td', 'What dependence is, what stigma does and why it matters who is in your corner.') + ed('impact.run-2min', 'td', '15 minutes') + '</tr>' +
+              '<tr>' + ed('impact.run-3a', 'td', 'Myth or fact') + ed('impact.run-3b', 'td', 'Small groups sort common beliefs about drug use and talk about where they come from.') + ed('impact.run-3min', 'td', '15 minutes') + '</tr>' +
+              '<tr>' + ed('impact.run-4a', 'td', 'Swap the word') + ed('impact.run-4b', 'td', 'Students turn harsh labels into words that describe a person, not a problem.') + ed('impact.run-4min', 'td', '10 minutes') + '</tr>' +
+              '<tr>' + ed('impact.run-5a', 'td', 'What would you say?') + ed('impact.run-5b', 'td', 'Groups work through made-up scenarios about a worried friend and practise what to say and do.') + ed('impact.run-5min', 'td', '20 minutes') + '</tr>' +
+              '<tr>' + ed('impact.run-6a', 'td', 'Wrap up and end check') + ed('impact.run-6b', 'td', 'Where to get help, then the same anonymous questions again.') + ed('impact.run-6min', 'td', '5 minutes') + '</tr>' +
             '</tbody>' +
           '</table></div>' +
+          ed('impact.run-total', 'p', 'Total: about 70 minutes, which fits a double lesson.', ' class="small muted"') +
           ed('impact.photos-h', 'h3', 'Photos and screenshots') +
           '<div class="grid grid-3">' +
             mediaSlot('impact.photo-site', 'A screenshot of the website') +
@@ -677,7 +700,7 @@
           ed('impact.future-h', 'h2', 'Our future') +
           '<div class="grid grid-2">' +
             '<div class="card">' + ed('impact.future-improve-h', 'h3', 'How we could improve it') +
-              ed('impact.future-improve', 'p', 'Research shows the effect of anti-stigma education can fade over time (Song et al., 2023), so our first improvement would be a short follow up visit a term later. We would also keep improving the activities using feedback from every school. [ANY IMPROVEMENTS YOUR TESTERS SUGGESTED]') + '</div>' +
+              ed('impact.future-improve', 'p', 'Research shows the effect of anti-stigma education can fade over time (Song et al., 2023), so our first improvement would be a short follow up visit a term later. We would also keep improving the activities using feedback from every school. Our testers asked for more ways to reach out and a clearer explanation of what we do, so we added both. One tester also said parts felt preachy and another said it made them feel bad for not noticing sooner, so we will keep working on the wording.') + '</div>' +
             '<div class="card">' + ed('impact.future-scale-h', 'h3', 'Could it work on a larger scale?') +
               ed('impact.future-scale', 'p', 'Yes. The visit follows the same plan each time, so it can be taught to new presenters. We would start with schools in the Redlands and Bayside, then train more presenters to reach other parts of Queensland.') + '</div>' +
             '<div class="card">' + ed('impact.future-reach-h', 'h3', 'How more people could use it') +
@@ -697,67 +720,77 @@
       crumbs: [['Testing and feedback', null]],
       init: updateTestingPage,
       render: function () {
-        var testers = '';
-        for (var t = 1; t <= TESTER_SLOTS; t++) {
-          var optional = t > 3;
-          testers += '<div class="card tester-card' + (optional ? ' optional' : '') + '">' +
-            (optional ? '<span class="placeholder-tag">Optional extra tester</span>' : '') +
-            ed('testing.tester' + t + '-name', 'h3', '[TESTER ' + t + ' NAME OR ROLE]') +
-            ed('testing.tester' + t + '-who', 'p', '[YEAR LEVEL OR ROLE, for example Year 10 student at a Redlands school]') +
-            ed('testing.tester' + t + '-why', 'p', '[WHY THIS PERSON REPRESENTS OUR TARGET AUDIENCE]') +
-            '</div>';
-        }
-
         var head = '<tr><th scope="col">Question</th>';
-        for (t = 1; t <= TESTER_SLOTS; t++) head += '<th scope="col">Tester ' + t + (t > 3 ? ' (optional)' : '') + '</th>';
+        for (var t = 1; t <= TESTER_SLOTS; t++) {
+          head += '<th scope="col">Tester ' + t + '<span class="th-role">' + TESTER_ROLES[t - 1] + '</span></th>';
+        }
         head += '<th scope="col">Average</th></tr>';
         var body = '';
         RATING_QUESTIONS.forEach(function (label, i) {
           var q = i + 1;
           body += '<tr>' + ed('testing.q' + q + '-label', 'th', label, ' scope="row"');
           for (var tt = 1; tt <= TESTER_SLOTS; tt++) {
-            body += ed('testing.rate-q' + q + '-t' + tt, 'td', '[RATING /5]', ' class="rating-cell"');
+            body += ed('testing.rate-q' + q + '-t' + tt, 'td', String(SURVEY_RATINGS[i][tt - 1]), ' class="rating-cell"');
           }
           body += '<td class="avg-cell" data-avg="' + q + '">-</td></tr>';
         });
 
+        function quote(n, text, cite) {
+          return '<div class="card quote-card">' +
+            ed('testing.real-quote-' + n, 'blockquote', text) +
+            ed('testing.real-quote-' + n + '-cite', 'cite', cite) +
+            '</div>';
+        }
+        function theme(n, heading, text) {
+          return '<div class="card">' +
+            ed('testing.real-theme-' + n + '-h', 'h3', heading) +
+            ed('testing.real-theme-' + n, 'p', text) +
+            '</div>';
+        }
+
         return '' +
         '<section class="section">' +
           ed('testing.title', 'h1', 'Testing and feedback') +
-          ed('testing.lede', 'p',
-            'We tested our prototype with real people from our target audience. They looked at this website first, because that is what a school or student sees first, then tried part of the workshop and told us honestly what worked and what did not.', ' class="lede"') +
+          ed('testing.lede-real', 'p',
+            'We tested our prototype with real people from our target audience. They looked at this website first, because that is what a school or student sees first, then told us honestly what worked and what did not. Some of what they said was hard to hear, and that is exactly why it was useful.', ' class="lede"') +
         '</section>' +
 
         '<section class="section">' +
           ed('testing.who-h', 'h2', 'Who tested it') +
-          ed('testing.who-intro', 'p', 'Our testers come from our target audience: students in Years 9 to 12, plus [ANY TEACHER OR WELLBEING STAFF TESTERS]. Testers are described by role only unless they agreed to have their name shown.') +
-          '<div class="grid grid-3">' + testers + '</div>' +
+          '<div class="grid grid-3">' +
+            '<div class="card stat-card"><p class="big">8</p>' + ed('testing.who-total', 'p', 'people tested Same Side between 10 and 13 October 2026.') + '</div>' +
+            '<div class="card stat-card"><p class="big">6</p>' + ed('testing.who-students', 'p', 'were Year 10 students, right in the middle of our Years 9 to 12 audience.') + '</div>' +
+            '<div class="card stat-card"><p class="big">1</p>' + ed('testing.who-staff', 'p', 'was a teacher or school staff member, the kind of person who would book a visit. One more tester did not give a year level.') + '</div>' +
+          '</div>' +
+          ed('testing.who-why', 'p',
+            'Year 10 students are who Same Side is built for: they are the friends and classmates a struggling teen would turn to. Teachers matter too, because they decide whether a visit happens. Our testers stayed anonymous, so we only describe them by year level or role.') +
         '</section>' +
 
         '<section class="section">' +
           ed('testing.how-h', 'h2', 'How they tested it') +
           '<ol class="steps">' +
-            '<li>' + ed('testing.how-1', 'p', '<strong>Explored the website.</strong> Each tester used the website on their own for [MINUTES] minutes with one task: find out what Same Side does and how a school would book a visit.') + '</li>' +
-            '<li>' + ed('testing.how-2', 'p', '<strong>Tried part of the workshop.</strong> We ran [WHICH PART, for example the talk and the swap the word activity] with them [WHERE AND WHEN].') + '</li>' +
-            '<li>' + ed('testing.how-3', 'p', '<strong>Filled in our survey.</strong> Five questions on a 1 to 5 scale plus three open questions. You can see it on our ' + link('/testing-kit', 'testing kit') + ' page.') + '</li>' +
-            '<li>' + ed('testing.how-4', 'p', '<strong>Had a short interview.</strong> We asked follow up questions and wrote down their answers. [ANY OTHER METHOD, for example video testimonials]') + '</li>' +
+            '<li>' + ed('testing.how-web', 'p', '<strong>Looked at the website.</strong> Testers explored this website on their own to find out what Same Side does and how a school would book a visit.') + '</li>' +
+            '<li>' + ed('testing.how-workshop', 'p', '<strong>Tried the workshop.</strong> [IF TESTERS TRIED PART OF THE WORKSHOP, SAY WHICH PART AND WHERE. If they did not, delete this sentence.]') + '</li>' +
+            '<li>' + ed('testing.how-form', 'p', '<strong>Filled in our survey.</strong> An anonymous Google Form with five questions on a 1 to 5 scale and three open questions. You can see every question on our ' + link('/testing-kit', 'testing kit') + ' page.') + '</li>' +
+            '<li>' + ed('testing.how-quote', 'p', '<strong>Told us if we could quote them.</strong> The last question asked permission, and we only quote people who said yes.') + '</li>' +
           '</ol>' +
         '</section>' +
 
         '<section class="section">' +
           ed('testing.method-h', 'h2', 'How we collected feedback') +
-          ed('testing.method', 'p', 'We used a short survey with a 1 to 5 rating scale, where 1 means not at all and 5 means a lot, plus open questions and a short interview. The survey and interview questions are on our ' + link('/testing-kit', 'testing kit') + ' page so anyone can see exactly what we asked.') +
+          ed('testing.method-real', 'p', 'We used a rating scale and written feedback in one anonymous survey. For the rating questions, 1 means not at all and 5 means a lot. The open questions asked what was most useful, whether anything felt preachy or judgemental and what we should change.') +
         '</section>' +
 
         '<section class="section">' +
           ed('testing.results-h', 'h2', 'Results') +
-          ed('testing.results-intro', 'p', 'Each box is one tester\'s rating out of 5. The averages and the chart work themselves out from these numbers.') +
+          ed('testing.results-summary', 'p',
+            'Our testers were split. Five gave 5 out of 5 for every question. Two Year 10 students gave 1 for every question and left very short written answers. We kept every answer in, because leaving out the low scores would not be honest. Feeling respectful scored highest. Understanding what Same Side does and ease of use scored lowest, at 3.0 out of 5, so that is what we worked on first.') +
           '<p class="small muted" id="testerCount" aria-live="polite"></p>' +
           '<div class="table-wrap"><table class="data-table ratings-table">' +
             '<caption>Tester ratings out of 5</caption>' +
             '<thead>' + head + '</thead><tbody>' + body + '</tbody>' +
           '</table></div>' +
-          '<p class="small muted edit-hint">In editing mode, type a number from 1 to 5 in each box. Leave a box as it is if that tester did not answer.</p>' +
+          '<p class="small muted edit-hint">In editing mode, type a number from 1 to 5 in each box. The averages and chart update by themselves.</p>' +
           '<figure class="chart-card">' +
             '<figcaption>Average rating out of 5 for each question</figcaption>' +
             '<div id="ratingsChart" class="ratings-chart" role="img"></div>' +
@@ -766,44 +799,48 @@
 
         '<section class="section">' +
           ed('testing.quotes-h', 'h2', 'What testers said') +
+          ed('testing.quotes-note', 'p', 'Quoted word for word, only from testers who said we could.', ' class="small muted"') +
           '<div class="grid grid-3">' +
-            [1, 2, 3].map(function (n) {
-              return '<div class="card quote-card">' +
-                ed('testing.quote-' + n, 'blockquote', '[FEEDBACK QUOTE ' + n + ']') +
-                ed('testing.quote-' + n + '-cite', 'cite', '[TESTER NAME OR ROLE]') +
-                '</div>';
-            }).join('') +
+            quote(1, 'The description of the struggles', 'Year 10 student, on the most useful part') +
+            quote(2, 'Made me feel bad for not noticing it sooner', 'Year 10 student, when asked if anything felt judgemental') +
+            quote(3, 'fix the contact not working', 'Anonymous tester, on what to change') +
           '</div>' +
         '</section>' +
 
         '<section class="section">' +
           ed('testing.themes-h', 'h2', 'Main themes from the feedback') +
           '<div class="grid grid-3">' +
-            [1, 2, 3].map(function (n) {
-              return '<div class="card">' +
-                ed('testing.theme-' + n + '-h', 'h3', '[THEME ' + n + ']') +
-                ed('testing.theme-' + n, 'p', '[WHAT TESTERS SAID ABOUT THIS AND HOW MANY OF THEM SAID IT]') +
-                '</div>';
-            }).join('') +
+            theme(1, 'Not everyone understood what we do',
+              'Half of our testers (4 out of 8) gave 1 out of 5 for understanding what Same Side does, and the same four gave 1 for how easy the website was to use. Other testers asked for more information and a few touch ups.') +
+            theme(2, 'The visit felt respectful to most',
+              'Six out of 8 testers gave 4 or 5 out of 5 for how respectful it felt. But one tester said it felt preachy, and another said it made them feel bad for not noticing sooner.') +
+            theme(3, 'People want more ways to reach out',
+              'One tester asked for "more options for reaching out" and another told us the contact form was not working. Both are about the same thing: making it easy to get in touch with someone.') +
           '</div>' +
         '</section>' +
 
         '<section class="section">' +
           ed('testing.changed-h', 'h2', 'What we changed') +
-          ed('testing.changed-why', 'p', 'Feedback that led to this change: [WHICH FEEDBACK, AND FROM HOW MANY TESTERS]') +
+          ed('testing.changed-why-real', 'p', 'Feedback that led to this change: a Year 10 tester asked for "more options for reaching out", and half our testers found it hard to understand what Same Side does.') +
           '<div class="grid grid-2 before-after">' +
             '<div class="card before">' +
               '<p class="ba-label">Before</p>' +
-              ed('testing.before', 'p', '[WHAT IT WAS LIKE BEFORE TESTING]') +
-              mediaSlot('testing.before-img', 'Before the change') +
+              ed('testing.before-real', 'p', 'The only help information on the site was one line at the bottom of each page, naming headspace Capalaba and Kids Helpline. A visitor had to scroll all the way down to find it.') +
+              mediaSlot('testing.before-img', 'Screenshot of the old footer') +
             '</div>' +
             '<div class="card after">' +
               '<p class="ba-label">After</p>' +
-              ed('testing.after', 'p', '[WHAT IT IS LIKE NOW, AND WHY IT IS BETTER]') +
-              mediaSlot('testing.after-img', 'After the change') +
+              ed('testing.after-real', 'p', 'A new ' + link('/get-help', 'Get help') + ' page, linked from the main menu and every page, with seven ways to reach out. It includes a 24 hour alcohol and drug line, online support for young people, a crisis line run by Aboriginal and Torres Strait Islander people and plain tips on what to say to a friend you are worried about.') +
+              mediaSlot('testing.after-img', 'Screenshot of the new Get help page') +
             '</div>' +
           '</div>' +
-          ed('testing.next', 'p', 'Other changes we would make with more time: [OTHER IDEAS FROM THE FEEDBACK]') +
+          ed('testing.also-h', 'h3', 'We also changed') +
+          '<ul>' +
+            '<li>' + ed('testing.also-1', 'p', 'We added a "Same Side in 30 seconds" box to the top of the ' + link('/', 'home page') + ' because understanding what we do scored only 3.0 out of 5.') + '</li>' +
+            '<li>' + ed('testing.also-2', 'p', 'We found out why the contact form was not working: the database behind it had not been set up yet. We are setting it up, and if the form ever fails now it says so clearly and points people to the Get help page instead of a vague error.') + '</li>' +
+          '</ul>' +
+          ed('testing.next-h', 'h3', 'What we would do next') +
+          ed('testing.next-real', 'p', 'All of our student testers were in Year 10, so next we want to test with Year 9, 11 and 12 students. We also want to go through the wording with more students so it feels less preachy, and make sure the talk helps people notice sooner without making them feel guilty for not noticing before.') +
         '</section>' +
 
         CTA_BAND;
@@ -831,6 +868,7 @@
         '<section class="section no-print">' +
           ed('kit.title', 'h1', 'Testing kit') +
           ed('kit.lede', 'p', 'This is the survey and interview we use to test our prototype. Print it or save it as a PDF, then use the results on our ' + link('/testing', 'testing and feedback') + ' page.', ' class="lede"') +
+          ed('kit.google-form', 'p', 'We also ran the same survey as an anonymous Google Form, which is how our October 2026 testers answered it.') +
           '<div class="cta-row"><button class="btn btn-primary" type="button" data-print="print-kit">Print or save as PDF</button></div>' +
         '</section>' +
 
@@ -1038,6 +1076,56 @@
       }
     },
 
+    '/get-help': {
+      title: 'Get help | Same Side',
+      description: 'Where young people in the Redlands and across Australia can get help with drugs, alcohol or anything else, plus tips on helping a worried friend.',
+      crumbs: [['Get help', null]],
+      render: function () {
+        function service(key, name, how, body, href, linkText) {
+          return '<div class="card help-card">' +
+            ed('help.' + key + '-h', 'h3', name) +
+            '<p class="help-how">' + (href ? '<a href="' + href + '"' + (/^https/.test(href) ? ' rel="noopener" target="_blank"' : '') + '>' + linkText + '</a>' : linkText) + '</p>' +
+            ed('help.' + key, 'p', body) +
+            '</div>';
+        }
+        return '' +
+        '<section class="section">' +
+          ed('help.title', 'h1', 'Get help') +
+          ed('help.lede', 'p',
+            'If you are worried about yourself or a friend, you do not have to work it out alone. These services are confidential and they will not judge you. You do not need to be in a crisis to call.', ' class="lede"') +
+        '</section>' +
+
+        '<section class="section callout help-urgent">' +
+          ed('help.urgent', 'p', '<strong>If someone is in danger right now, call 000.</strong> If someone has taken something and is not responding properly, call 000 straight away and stay with them.') +
+        '</section>' +
+
+        '<section class="section">' +
+          ed('help.services-h', 'h2', 'Who you can talk to') +
+          '<div class="grid grid-2">' +
+            service('kids', 'Kids Helpline', 'phone', 'Free, private counselling for young people aged 5 to 25, any time of day or night, by phone or webchat.', 'tel:1800551800', 'Call 1800 55 1800') +
+            service('capalaba', 'headspace Capalaba', 'visit', 'Our local youth mental health service for 12 to 25 year olds. You can go in and talk to someone face to face.', 'https://headspace.org.au/headspace-centres/capalaba/', 'Find headspace Capalaba') +
+            service('eheadspace', 'eheadspace', 'online', 'Online and phone support from headspace for 12 to 25 year olds, if going in person feels like too much.', 'tel:1800650890', 'Call 1800 650 890') +
+            service('adis', 'Alcohol and Drug Support (ADIS) Queensland', 'phone', 'A 24 hour, confidential line for Queenslanders with questions or worries about alcohol and other drugs, including people worried about someone else.', 'tel:1800177833', 'Call 1800 177 833') +
+            service('yarn', '13YARN', 'phone', 'A 24 hour crisis line where you can yarn with an Aboriginal or Torres Strait Islander crisis supporter.', 'tel:139276', 'Call 13 92 76') +
+            service('lifeline', 'Lifeline', 'phone', 'A 24 hour crisis support line for anyone who is struggling to cope.', 'tel:131114', 'Call 13 11 14') +
+          '</div>' +
+          ed('help.school', 'p', 'You can also talk to someone at school: a guidance officer, school counsellor, school nurse or any teacher you trust.') +
+        '</section>' +
+
+        '<section class="section">' +
+          ed('help.friend-h', 'h2', 'If you are worried about a friend') +
+          '<ol class="steps">' +
+            '<li>' + ed('help.friend-1', 'p', '<strong>Pick a private moment.</strong> Not in front of other people and not over a group chat.') + '</li>' +
+            '<li>' + ed('help.friend-2', 'p', '<strong>Say what you have noticed, without judging.</strong> Something like "You have not seemed yourself lately. I am here if you want to talk."') + '</li>' +
+            '<li>' + ed('help.friend-3', 'p', '<strong>Listen more than you talk.</strong> You do not need to have the answers. Being on their side is the main thing.') + '</li>' +
+            '<li>' + ed('help.friend-4', 'p', '<strong>Help them reach someone.</strong> Offer to look up a service with them or sit with them while they call.') + '</li>' +
+            '<li>' + ed('help.friend-5', 'p', '<strong>Do not keep it secret if they are in danger.</strong> Tell a trusted adult. That is looking after your friend, not dobbing them in.') + '</li>' +
+            '<li>' + ed('help.friend-6', 'p', '<strong>Look after yourself too.</strong> Worrying about a friend is heavy. You can call any of the services above for yourself.') + '</li>' +
+          '</ol>' +
+        '</section>';
+      }
+    },
+
     '/how-it-works': {
       title: 'How it works | Same Side',
       description: 'How a Same Side school visit works: a short talk and hands-on activities run by trained presenters, plus the evidence behind it.',
@@ -1055,7 +1143,7 @@
           '<ol class="steps">' +
             '<li>' + ed('how.step-before-h', 'h3', 'Before the visit') +
               ed('how.step-before', 'p',
-                'We talk with your wellbeing coordinator or Head of Year about the year level, the timetable and anything we should know. Teachers get a one page outline so nothing is a surprise. A visit takes [VISIT LENGTH, for example one double lesson].') + '</li>' +
+                'We talk with your wellbeing coordinator or Head of Year about the year level, the timetable and anything we should know. Teachers get a one page outline so nothing is a surprise. A visit takes about 70 minutes, which fits a double lesson.') + '</li>' +
             '<li>' + ed('how.step-talk-h', 'h3', 'The talk') +
               ed('how.step-talk', 'p',
                 'A short, honest talk about what drug dependence actually is (a health condition, not a character flaw), what stigma is and how jokes, gossip and distance push a struggling person into hiding. No scare stories and no shock images.') + '</li>' +
@@ -1132,8 +1220,8 @@
             '<h2>Answers for your leadership team</h2>' +
             ed('schools.defensible-visit-1', 'p',
               '<strong>It is easy to explain to parents.</strong> The visit never condones drug use and never uses scare tactics. It teaches students how to respond when a classmate is struggling. Parents can read the same research you can on our ' + link('/research', 'problem and research') + ' page.') +
-            ed('schools.defensible-visit-2', 'p',
-              '<strong>What it costs.</strong> [COST PER VISIT, OR SAY IF IT IS FREE]') +
+            ed('schools.cost-pilot', 'p',
+              '<strong>What it costs.</strong> Visits are free for our pilot schools while we test and improve the program.') +
             ed('schools.defensible-visit-3', 'p',
               '<strong>It asks nothing of vulnerable students.</strong> No disclosure, no singling out and no personal stories from your students. The full detail is in the ' + link('/faq', 'FAQ') + '.') +
           '</div>' +
@@ -1198,12 +1286,12 @@
             'The questions wellbeing coordinators, principals and parents ask us most. If yours is not here, <a href="' + BASE + '/contact" data-link>send it through</a> and we will reply within 2 school days.') +
           item('Does this program condone drug use?', 'faq.condone-visit',
             'No. Same Side never tells students that drug use is fine and never gives instructions of any kind. We also do not use scare tactics. The visit teaches students to treat dependence as a health issue so a struggling classmate gets help sooner. Getting help sooner is the opposite of condoning the problem.') +
-          item('Who runs the visit?', 'faq.who-runs',
-            'Trained Same Side presenters run the whole session. Your teachers stay in the room but do not need to prepare or present anything. [WHO YOUR PRESENTERS ARE AND HOW THEY ARE TRAINED]') +
-          item('How long is a visit and which year levels is it for?', 'faq.length',
-            'A visit takes [VISIT LENGTH] and is designed for Years 9 to 12. See exactly what happens on our ' + link('/how-it-works', 'how it works') + ' page.') +
-          item('What does it cost?', 'faq.cost-visit',
-            '[COST PER VISIT, OR SAY IF IT IS FREE]. See what is included on the ' + link('/for-schools', 'for schools') + ' page.') +
+          item('Who runs the visit?', 'faq.who-runs-team',
+            'Same Side presenters run the whole session. Each presenter practises the full visit with our team first and follows the same plan, so every school gets the same visit. Your teachers stay in the room but do not need to prepare or present anything.') +
+          item('How long is a visit and which year levels is it for?', 'faq.length-70',
+            'A visit takes about 70 minutes, so it fits in a double lesson. It is designed for Years 9 to 12. See exactly what happens on our ' + link('/how-it-works', 'how it works') + ' page.') +
+          item('What does it cost?', 'faq.cost-pilot',
+            'Visits are free for our pilot schools while we test and improve the program. See what is included on the ' + link('/for-schools', 'for schools') + ' page.') +
           item('Do students have to share their own experiences?', 'faq.disclose-visit',
             'Never. The visit is aimed at the whole year level and asks nothing of any student who may be struggling. No disclosure, no singling out and no personal stories. Requiring that would cause the exact harm we are trying to prevent.') +
           item('How do we know if it worked?', 'faq.measure-visit',
@@ -1624,7 +1712,17 @@
         navigate('/thank-you');
       }).catch(function () {
         showFormStatus('error',
-          'Something went wrong sending your enquiry. Please try again in a minute.');
+          'Sorry, our enquiry form is not working right now, so your message was not sent. Please try again later. ' +
+          'If you or a friend need help now, see our Get help page.');
+        var el = document.getElementById('formStatus');
+        if (el) {
+          el.appendChild(document.createTextNode(' '));
+          var a = document.createElement('a');
+          a.href = BASE + '/get-help';
+          a.setAttribute('data-link', '');
+          a.textContent = 'Go to Get help';
+          el.appendChild(a);
+        }
       });
     });
   }
